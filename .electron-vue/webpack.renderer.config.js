@@ -23,7 +23,7 @@ let whiteListedModules = ['vue']
 let rendererConfig = {
   devtool: '#cheap-module-eval-source-map',
   entry: {
-    renderer: path.join(__dirname, '../src/test/renderer/main.js')
+    renderer: path.join(__dirname, `../src/${process.env.APP_NAME}/renderer/main.js`)
   },
   externals: [
     ...Object.keys(dependencies || {}).filter(d => !whiteListedModules.includes(d))
@@ -120,7 +120,8 @@ let rendererConfig = {
   },
   resolve: {
     alias: {
-      '@': path.join(__dirname, '../src/test/renderer'),
+      '@': path.join(__dirname, `../src/${process.env.APP_NAME}/renderer`),
+      'common': path.join(__dirname, '../src/common'),
       'vue$': 'vue/dist/vue.esm.js'
     },
     extensions: ['.js', '.vue', '.json', '.css', '.node']
